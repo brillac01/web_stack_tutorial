@@ -88,7 +88,7 @@ Or follow the instructions below.
 2. Select your preferred region (the closest to you) and launch a new EC2 instance of t2.micro family with Ubuntu
 Server 20.04 LTS (HVM)
 
-![web_stack](./img/1.web_stack.png)
+![web_stack](./img/1.LAMP.png)
 
 IMPORTANT - save your private key `(.pem file)` securely and do not share it with anyone! If you lose it, you will not be ableto connect to your server ever again!
 IMPORTANT NOTICE - Both `Putty` and `ssh` use the SSH protocol to establish connectivity between computers. It is the most secure protocol because it uses crypto algorithms to encrypt the data that is transmitted - it uses TCP port 22
@@ -335,6 +335,28 @@ At this point, your LAMP stack is completely installed and fully operational.
 To test your setup with a PHP script, it’s best to set up a proper Apache Virtual Host to hold your website’s files and
 folders. Virtual host allows you to have multiple websites located on a single machine and users of the websites will not
 even notice it.
+# Creating a Virtual Hostfor your Website using Apache
+
+## Step 4 — Creating a Virtual Host for your Website using Apache
+
+In this project, you will set up a domain called projectlamp , but you can replace this with any domain of your choice.
+Apache on Ubuntu 20.04 has one server block enabled by default that is configured to serve documents from the /var/www/html directory. 
+
+We will leave this configuration as is and will add our own directory next next to the default
+one.
+Create the directory for projectlamp using 'mkdir' command as follows:
+
+`$ sudo mkdir /var/www/projectlamp`
+
+Next, assign ownership of the directory with the $USER environment variable, which will reference your current system
+user:
+`$ sudo chown -R $USER:$USER /var/www/projectlamp`
+
+Then, create and open a new configuration file in Apache’s sites-available directory using your preferred commandline editor. Here, we’ll be using vi or vim (They are the same by the way):
+
+`$ sudo vi /etc/apache2/sites-available/projectlamp.conf`
+
+![LAMP](./img/12.LAMP.png)
 
 # Enable PHP on the website
 
@@ -356,20 +378,16 @@ order in which the index.php file is listed within the DirectoryIndex directive:
 #To this:
 Copy Below Code
 Copy Below Code
-11/12/23, 9:52 AM Learning Path - Project - Darey.io
-https://app.darey.io/learning/project 15/19
-
-
-
-
-
-
-
-
+
+![LAMP](./img/8.webstack.png)
+
 DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 </IfModule>
 After saving and closing the file, you will need to reload Apache so the changes take effect:
-$ sudo systemctl reload apache2
+
+`$ sudo systemctl reload apache2`
+
+![LAMPSTACK](./img/9.LAMP.png)
 
 Finally, we will create a PHP script to test that PHP is correctly installed and configured on your server.
 Now that you have a custom location to host your website’s files and folders, we’ll create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
@@ -379,6 +397,7 @@ Create a new file named index.php inside your custom web root folder:
 `$ vim /var/www/projectlamp/index.php`
 
 ![webstack](./img/19.webstack.png)
+
 
 This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 <?php
@@ -394,9 +413,49 @@ as it contains sensitive information about your PHP environment -and your Ubuntu
 
 `$ sudo rm /var/www/projectlamp/index.php`
 
-You can always recreate this page if you need to access the information again later.
-Credit: This guide was inspired by Digital Ocea
+![lamp](./img/10.LAMP.png)
 
+<IfModule mod_dir.c>
+#Change this:
+#DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+#To this:
+
+DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+
+After saving and closing the file, you will need to reload Apache so the changes take effect:
+
+`$ sudo systemctl reload apache2`
+
+Finally, we will create a PHP script to test that PHP is correctly installed and configured on your server.
+Now that you have a custom location to host your website’s files and folders, we’ll create a PHP test script to confirm that Apache is able to handle and process requests for PHP files.
+
+Create a new file named index.php inside your custom web root folder:
+
+`$ vim /var/www/projectlamp/index.php`
+
+This will open a blank file. Add the following text, which is valid PHP code, inside the file:
+
+<?php
+phpinfo();
+
+When you are finished, save and close the file, refresh the page and you will see a page similar to this:
+
+This page provides information about your server from the perspective of PHP. It is useful for debugging and to ensure
+that your settings are being applied correctly.
+
+If you can see this page in your browser, then your PHP installation is working as expected.
+
+After checking the relevant information about your PHP server through that page, it’s best to remove the file you created
+as it contains sensitive information about your PHP environment -and your Ubuntu server. You can use rm to do so:
+
+`$ sudo rm /var/www/projectlamp/index.php`
+
+You can always recreate this page if you need to access the information again later.
+
+![LAMPSTACK](./IMG/11.LAMP.png)
+
+Congratulations, You have finished your very first REAL LIFE PROJECT by deploying a LAMP stack website in AWS Cloud!
 
 
 
