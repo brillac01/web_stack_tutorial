@@ -445,7 +445,7 @@ as it contains sensitive information about your PHP environment -and your Ubuntu
 
 You can always recreate this page if you need to access the information again later.
 
-![LAMPSTACK](./IMG/11.LAMP.png)
+![LAMPSTACK](./img/11.LAMP.png)
 
 Congratulations, You have finished your very first REAL LIFE PROJECT by deploying a LAMP stack website in AWS Cloud!
 
