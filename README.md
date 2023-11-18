@@ -289,15 +289,6 @@ Note: At the time of this writing, the native MySQL PHP library mysqlnd doesn’
 STRONG Length >= 8, numeric, mixed case, special characters and dictionary file
 Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 1
 
-Copy Below Code
-11/12/23, 9:52 AM Learning Path - Project - Darey.io
-https://app.darey.io/learning/project 13/19
-
-
-
-
-
-
 database users for PHP applications on MySQL 8, you’ll need to make sure they’re configured to use
 mysql_native_password instead.
 Your MySQL server is now installed and secured. Next, we will install PHP, the final component in the LAMP stack.
@@ -400,8 +391,9 @@ Create a new file named index.php inside your custom web root folder:
 
 
 This will open a blank file. Add the following text, which is valid PHP code, inside the file:
-<?php
-phpinfo();
+`<?php`
+`phpinfo();`
+
 When you are finished, save and close the file, refresh the page and you will see a page similar to this:
 
 This page provides information about your server from the perspective of PHP. It is useful for debugging and to ensure
@@ -417,7 +409,7 @@ as it contains sensitive information about your PHP environment -and your Ubuntu
 
 <IfModule mod_dir.c>
 #Change this:
-#DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+`#DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
 #To this:
 
 DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
@@ -436,8 +428,8 @@ Create a new file named index.php inside your custom web root folder:
 
 This will open a blank file. Add the following text, which is valid PHP code, inside the file:
 
-<?php
-phpinfo();
+`<?php`
+`phpinfo();`
 
 When you are finished, save and close the file, refresh the page and you will see a page similar to this:
 
